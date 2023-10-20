@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1 id="title">Your favorite game</h1>
+    <p id="description">Fill out the form to collect statistics about your favorite games</p>
+    <form id="survey-form">
+      <label id="name-label" for="name">Name: <input id="name" type="text" required placeholder="Enter your name"></label>
+      <label id="email-label" for="email">Email: <input id="email" type="email" required placeholder="Enter your email"></label>
+      <label id="number-label" for="number">Age: <input id="number" type="number" placeholder="Age" required min="14" max="120" value="14"></label>
+
+      <label for="dropdown">Your sex
+        <select id="dropdown" name="sex">
+          <option value="men">Man</option>
+          <option value="female">Female</option>
+          <option value="other">Other</option>
+        </select>
+      </label>
+
+        <p>How often do you play games?</p>
+        <label for="first_radio"><input id="first_radio" type="radio" name="account-type" value="day" class="inline" checked> Yes every day</label>
+        <label for="second_radio"><input id="second_radio" type="radio" value="week" name="account-type" class="inline"> Once a week</label>
+        <label for="three_radio"><input id="three_radio" type="radio" value="rare" name="account-type" class="inline"> Very rarely under the mood</label>
+        <label for="third_radio"><input id="third_radio" type="radio" value="no" name="account-type" class="inline"> I don't play at all</label> 
+ 
+
+      <p>What platforms do you play on?</p>
+
+      <label for="pc"><input id="pc" type="checkbox" name="account-type" class="inline" value="PC" checked required> PC</label>
+      <label for="xbox"><input id="xbox" type="checkbox" name="account-type" value="XBOX" class="inline" required> XBOX</label>
+      <label for="ps"><input id="ps" type="checkbox" name="account-type" value="PlayStation" class="inline" required> PlayStation</label>
+      <label for="switch"><input id="switch" type="checkbox" value="Nintendo" name="account-type" class="inline" required> Nintendo Switch</label> 
+      <label for="smartphone"><input id="smartphone" type="checkbox" value="Smartphone" name="account-type" class="inline" required> Smartphone</label>
+      <label for="other"><input id="other" type="checkbox" name="account-type" value="other" class="inline" required> Other</label> 
+
+      <p>Tell us about your favorite games</p>
+      <textarea id="games" name="games" rows="5" cols="50" 
+      placeholder="You can enter here a few of your favorite games and briefly tell why you like them"></textarea>
+      <input id="submit" type="submit" value="Submit">
+    </form>
+  </body>
+</html>

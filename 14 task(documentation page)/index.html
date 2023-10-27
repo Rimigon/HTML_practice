@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Documentation</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <nav id="navbar">
+      <header>C# Documentation</header>
+      <ul>
+        <li><a class="nav-link" href="#Introduction">Introduction</a></li>
+        <li><a class="nav-link" href="#.NET_architecture">.NET architecture</a></li>
+        <li><a class="nav-link" href="#Hello_world">Hello world</a></li>
+        <li><a class="nav-link" href="#Types_and_variables">Types and variables</a></li>
+        <li><a class="nav-link" href="#Iterators">Iterators</a></li>
+        <li><a class="nav-link" href="#Simple_Iterator">Simple Iterator</a></li>
+        <li><a class="nav-link" href="#Declaring_and_initializing_strings">Declaring and initializing strings</a></li>
+      </ul>
+    </nav>
+
+    <main id="main-doc">
+      <section class="main-section">
+        <header id="Introduction">Introduction</header>
+        <p>C# (pronounced "See Sharp") is a modern, object-oriented, and type-safe programming language. 
+          C# enables developers to build many types of secure and robust applications that run in .NET. 
+          C# has its roots in the C family of languages and will be immediately familiar to C, C++, Java, and JavaScript programmers. 
+          This tour provides an overview of the major components of the language in C# 11 and earlier. If you want to explore the language through interactive examples, try the introduction to C# tutorials.</p>
+        <p>C# is an object-oriented, component-oriented programming language. C# provides language constructs to directly support these concepts, making C# a natural language in which to create and use software components. 
+          Since its origin, C# has added features to support new workloads and emerging software design practices. At its core, C# is an object-oriented language. You define types and their behavior.</p>
+      </section>
+      <section class="main-section">
+        <header id=".NET_architecture">.NET architecture</header>
+        <p>C# programs run on .NET, a virtual execution system called the common language runtime (CLR) and a set of class libraries. 
+          The CLR is the implementation by Microsoft of the common language infrastructure (CLI), an international standard. 
+          The CLI is the basis for creating execution and development environments in which languages and libraries work together seamlessly.</p>
+        <p>Source code written in C# is compiled into an intermediate language (IL) that conforms to the CLI specification. 
+          The IL code and resources, such as bitmaps and strings, are stored in an assembly, typically with an extension of .dll. 
+          An assembly contains a manifest that provides information about the assembly's types, version, and culture.</p>
+        <p>When the C# program is executed, the assembly is loaded into the CLR. 
+          The CLR performs Just-In-Time (JIT) compilation to convert the IL code to native machine instructions. 
+          The CLR provides other services related to automatic garbage collection, exception handling, and resource management. 
+          Code that's executed by the CLR is sometimes referred to as "managed code." "Unmanaged code," is compiled into native machine language that targets a specific platform.</p>
+      </section>
+      <section class="main-section">
+        <header id="Hello_world">Hello world</header>
+        <code>
+          using System;
+
+          class Hello
+          {
+              static void Main()
+              {
+                  // This line prints "Hello, World" 
+                  Console.WriteLine("Hello, World");
+              }
+          }
+        </code>
+        <p>The "Hello, World" program starts with a using directive that references the System namespace.
+           Namespaces provide a hierarchical means of organizing C# programs and libraries. 
+           Namespaces contain types and other namespaces—for example, the System namespace contains a number of types, such as the Console class referenced in the program, 
+           and many other namespaces, such as IO and Collections. A using directive that references a given namespace enables unqualified use of the types that are members of that namespace.
+            Because of the using directive, the program can use Console.WriteLine as shorthand for System.Console.WriteLine.</p>
+      </section>
+      <section class="main-section">
+        <header class="Types_and_variables">Types and variables</header>
+        <p>A type defines the structure and behavior of any data in C#. The declaration of a type may include its members, base type, 
+          interfaces it implements, and operations permitted for that type. A variable is a label that refers to an instance of a specific type.</p>
+        <p>There are two kinds of types in C#: value types and reference types. 
+          Variables of value types directly contain their data. Variables of reference types store references to their data, 
+          the latter being known as objects. With reference types, it's possible for two variables to reference the same object and possible for 
+          operations on one variable to affect the object referenced by the other variable. With value types, the variables each have their own copy 
+          of the data, and it isn't possible for operations on one to affect the other (except for ref and out parameter variables).</p>
+        <p>C#'s type system is unified such that a value of any type can be treated as an object. Every type in C# directly or indirectly derives from the object class type, 
+          and object is the ultimate base class of all types. Values of reference types are treated as objects simply by viewing the values as type object. 
+          Values of value types are treated as objects by performing boxing and unboxing operations. In the following example, an int value is converted to object and back again to int.</p>
+        <code>
+          int i = 123;
+          object o = i;    // Boxing
+          int j = (int)o;  // Unboxing
+        </code>
+      </section>
+      <section class="main-section">
+        <header class="Iterators">Iterators</header>
+        <p>An iterator can be used to step through collections such as lists and arrays.</p>
+        <p>An iterator method or get accessor performs a custom iteration over a collection. An iterator method uses the yield return statement to return each element one at a time. 
+          When a yield return statement is reached, the current location in code is remembered. Execution is restarted from that location the next time the iterator function is called.</p>
+        <p>In the following example, the first iteration of the foreach loop causes execution to proceed in the SomeNumbers iterator method until the first yield return statement is reached. 
+          This iteration returns a value of 3, and the current location in the iterator method is retained. On the next iteration of the loop, 
+          execution in the iterator method continues from where it left off, again stopping when it reaches a yield return statement. 
+          This iteration returns a value of 5, and the current location in the iterator method is again retained. The loop completes when the end of the iterator method is reached.</p>
+        <code>
+          static void Main()
+          {
+              foreach (int number in SomeNumbers())
+              {
+                  Console.Write(number.ToString() + " ");
+              }
+              // Output: 3 5 8
+              Console.ReadKey();
+          }
+          
+          public static System.Collections.IEnumerable SomeNumbers()
+          {
+              yield return 3;
+              yield return 5;
+              yield return 8;
+          }
+        </code>
+      </section>
+      <section class="main-section">
+        <header id="Simple_Iterator">Simple Iterator</header>
+        <p>The following example has a single yield return statement that is inside a for loop. 
+          In Main, each iteration of the foreach statement body creates a call to the iterator function, which proceeds to the next yield return statement.</p>
+        <code>
+          static void Main()
+          {
+              foreach (int number in EvenSequence(5, 18))
+              {
+                  Console.Write(number.ToString() + " ");
+              }
+              // Output: 6 8 10 12 14 16 18
+              Console.ReadKey();
+          }
+          
+          public static System.Collections.Generic.IEnumerable<int>
+              EvenSequence(int firstNumber, int lastNumber)
+          {
+              // Yield even numbers in the range.
+              for (int number = firstNumber; number <= lastNumber; number++)
+              {
+                  if (number % 2 == 0)
+                  {
+                      yield return number;
+                  }
+              }
+          }</code>
+      </section>
+      <section class="main-section">
+        <header id="Declaring_and_initializing_strings">Declaring and initializing strings</header>
+        <p>You can declare and initialize strings in various ways, as shown in the following example:</p>
+        <code>
+          // Declare without initializing.
+          string message1;
+
+          // Initialize to null.
+          string message2 = null;
+
+          // Initialize as an empty string.
+          // Use the Empty constant instead of the literal "".
+          string message3 = System.String.Empty;
+
+          // Initialize with a regular string literal.
+          string oldPath = "c:\\Program Files\\Microsoft Visual Studio 8.0";
+
+          // Initialize with a verbatim string literal.
+          string newPath = @"c:\Program Files\Microsoft Visual Studio 9.0";
+
+          // Use System.String if you prefer.
+          System.String greeting = "Hello World!";
+
+          // In local variables (i.e. within a method body)
+          // you can use implicit typing.
+          var temp = "I'm still a strongly-typed System.String!";
+
+          // Use a const string to prevent 'message4' from
+          // being used to store another string value.
+          const string message4 = "You can't get rid of me!";
+
+          // Use the String constructor only when creating
+          // a string from a char*, char[], or sbyte*. See
+          // System.String documentation for details.
+          char[] letters = { 'A', 'B', 'C' };
+          string alphabet = new string(letters);
+        </code>
+      </section>
+    </main>
+  </body>
+</html>
